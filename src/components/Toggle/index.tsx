@@ -1,5 +1,5 @@
-import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
 import { motion } from 'framer-motion'
+import { Moon, Sun } from 'icons'
 import { useState } from 'react'
 
 const theme = 'light'
@@ -53,9 +53,9 @@ export default function DarkModeSwitch() {
       >
         <motion.div whileTap={{ rotate: 360 }}>
           {isOn ? (
-            <SunIcon className="h-6 w-6 text-yellow-300" />
+            <Sun className="h-6 w-6 text-yellow-300" />
           ) : (
-            <MoonIcon className="h-6 w-6 text-slate-200" />
+            <Moon className="h-6 w-6 text-slate-200" />
           )}
         </motion.div>
       </motion.div>

@@ -4,10 +4,12 @@ import { useUserStore } from 'state'
 import { Player } from 'types'
 import { classNames } from 'utils'
 
-const players: Player[] = ['0', '1', '2', '3'].map((id) => ({
-  id,
-  name: 'Derp' + ' ' + 'Goddamn',
-}))
+const players: Player[] = [
+  { id: '1', name: 'Gwen Scott' },
+  { id: '2', name: 'Karen Dunn' },
+  { id: '3', name: 'Dana Harmon' },
+  { id: '4', name: 'Paula Kelley' },
+]
 
 const Game = () => {
   const userStore = useUserStore()
