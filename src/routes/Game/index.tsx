@@ -15,7 +15,7 @@ const Game = () => {
   const userStore = useUserStore()
 
   return (
-    <div className="flex min-h-full h-[70vh] items-center justify-center p-12">
+    <div className="flex min-h-full h-[65vh] items-center justify-center p-12">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center items-center">
           <h2 className="text-base font-semibold uppercase tracking-wide text-purple-600">

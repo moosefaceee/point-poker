@@ -11,7 +11,7 @@ type AvatarProps = {
 const sizes: Record<Size, string> = {
   small: 'w-10 h-10',
   medium: 'w-12 h-12',
-  large: 'w-14 h-14'
+  large: 'w-14 h-14',
 }
 
 const EmptyAvatar = ({ size = 'medium' }: Pick<AvatarProps, 'size'>) => (
@@ -19,7 +19,7 @@ const EmptyAvatar = ({ size = 'medium' }: Pick<AvatarProps, 'size'>) => (
     data-testid="empty-avatar"
     className={classNames(
       'inline-block overflow-hidden bg-gray-100 rounded-full',
-      sizes[size]
+      sizes[size],
     )}
   >
     <svg

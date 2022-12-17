@@ -2,9 +2,17 @@ import { motion } from 'framer-motion'
 import { Moon, Sun } from 'icons'
 import { useState } from 'react'
 
-const theme = 'light'
+const spring = {
+  type: 'spring',
+  stiffness: 700,
+  damping: 30,
+}
+
+type Themes = 'light' | 'dark'
 
 export default function DarkModeSwitch() {
+  const theme = localStorage.getItem('theme') as Themes
+
   const [isOn, setIsOn] = useState(() => {
     if (theme === 'light') {
       return true
@@ -15,11 +23,7 @@ export default function DarkModeSwitch() {
 
   const toggleSwitch = () => setIsOn(!isOn)
 
-  const spring = {
-    type: 'spring',
-    stiffness: 700,
-    damping: 30,
-  }
+  console.log('isOn', isOn)
 
   if (isOn) {
     document.documentElement.classList.remove('dark')
@@ -42,12 +46,12 @@ export default function DarkModeSwitch() {
   return (
     <div
       onClick={toggleSwitch}
-      className={`flex-start flex h-[50px] w-[100px] rounded-[50px] bg-zinc-100 p-[5px] shadow-inner hover:cursor-pointer dark:bg-zinc-700 ${
+      className={`flex-start flex h-[40px] w-[70px] rounded-[40px] bg-zinc-100 p-[5px] shadow-inner hover:cursor-pointer dark:bg-zinc-700 ${
         isOn && 'place-content-end'
       }`}
     >
       <motion.div
-        className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-black/90"
+        className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-black/90"
         layout
         transition={spring}
       >
