@@ -1,8 +1,12 @@
 import { Navbar } from 'components'
+import { lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { ErrorPage, Game, Login } from 'routes'
 import 'tailwindcss/tailwind.css'
+
+const Login = lazy(() => import('./routes/Login'))
+const ErrorPage = lazy(() => import('./routes/ErrorPage'))
+const Game = lazy(() => import('./routes/Game'))
 
 const container = document.getElementById('root') as HTMLDivElement
 
