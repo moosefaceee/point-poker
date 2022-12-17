@@ -1,13 +1,10 @@
+import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { RiMoonClearFill, RiSunFill } from 'react-icons/ri'
-import { localStorageHelpers } from 'utils/localStorageHelpers'
+
+const theme = 'light'
 
 export default function DarkModeSwitch() {
-  const localStorage = localStorageHelpers()
-
-  const theme = localStorage.getItem('theme')
-
   const [isOn, setIsOn] = useState(() => {
     if (theme === 'light') {
       return true
@@ -56,9 +53,9 @@ export default function DarkModeSwitch() {
       >
         <motion.div whileTap={{ rotate: 360 }}>
           {isOn ? (
-            <RiSunFill className="h-6 w-6 text-yellow-300" />
+            <SunIcon className="h-6 w-6 text-yellow-300" />
           ) : (
-            <RiMoonClearFill className="h-6 w-6 text-slate-200" />
+            <MoonIcon className="h-6 w-6 text-slate-200" />
           )}
         </motion.div>
       </motion.div>

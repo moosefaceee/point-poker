@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { GiPokerHand } from 'react-icons/gi'
 import { useNavigate } from 'react-router-dom'
 import { useUserStore } from 'state'
 import * as z from 'zod'
@@ -53,9 +52,7 @@ export default function LoginForm() {
           <h2 className="text-base font-semibold uppercase tracking-wide text-blue-600">
             Welcome to
           </h2>
-          <p className="my-3 text-4xl font-bold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Point Poker
-          </p>
+          <p className="my-3 text-4xl font-bold text-gray-900">Point Poker</p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <input type="hidden" name="remember" defaultValue="true" />
@@ -93,13 +90,13 @@ export default function LoginForm() {
           <div>
             <button
               type="submit"
-              className="group relative flex w-full justify-center rounded-md border border-transparent bg-violet-600 py-2 px-4 text-sm font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+              className="group relative flex min-w-full justify-center rounded-md border border-transparent bg-violet-600 py-2 px-4 text-sm font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
             >
               <span className="absolute inset-y-0 left-4 flex items-center pl-3">
-                <GiPokerHand
+                {/* <GiPokerHand
                   className="h-5 w-5 text-violet-200 group-hover:text-violet-100"
                   aria-hidden="true"
-                />
+                /> */}
               </span>
               Join
             </button>

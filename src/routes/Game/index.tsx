@@ -1,8 +1,13 @@
 import { Avatar } from 'components'
 import { Link } from 'react-router-dom'
 import { useUserStore } from 'state'
+import { Player } from 'types'
 import { classNames } from 'utils'
-import { players } from '../../constants'
+
+const players: Player[] = ['0', '1', '2', '3'].map((id) => ({
+  id,
+  name: 'Derp' + ' ' + 'Goddamn',
+}))
 
 const Game = () => {
   const userStore = useUserStore()

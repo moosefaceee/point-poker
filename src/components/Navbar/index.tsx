@@ -1,4 +1,4 @@
-import { ImSpades } from 'react-icons/im'
+import { Toggle } from 'components'
 import { Link, Outlet } from 'react-router-dom'
 
 const Navbar = () => {
@@ -7,7 +7,7 @@ const Navbar = () => {
       <nav className="bg-gradient-to-r from-purple-100 to-purple-500 text-white">
         <div className="flex items-center justify-between px-12 py-4 w-full">
           <div className="flex items-center">
-            <ImSpades className="fill-purple-700" />
+            {/* <ImSpades className="fill-purple-700" /> */}
           </div>
           <div className="flex items-center justify-between w-40">
             <Link
@@ -24,6 +24,7 @@ const Navbar = () => {
             >
               About
             </Link>
+            <Toggle />
           </div>
         </div>
       </nav>
