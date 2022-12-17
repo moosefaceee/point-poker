@@ -1,4 +1,8 @@
+import { Avatar } from 'components'
+import { Link } from 'react-router-dom'
 import { useUserStore } from 'state'
+import { classNames } from 'utils'
+import { players } from '../../constants'
 
 const Game = () => {
   const userStore = useUserStore()
@@ -6,13 +10,41 @@ const Game = () => {
   return (
     <div className="flex min-h-full h-[70vh] items-center justify-center p-12">
       <div className="w-full max-w-md space-y-8">
-        <div className="text-center">
-          <h2 className="text-base font-semibold uppercase tracking-wide text-blue-600">
-            Its game time, {userStore.user.name}
+        <div className="text-center items-center">
+          <h2 className="text-base font-semibold uppercase tracking-wide text-purple-600">
+            Welcome to the Table,
           </h2>
-          <p className="my-3 text-4xl font-bold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Let's goooo
+          <div className="flex flex-row items-center justify-center mb-12 mt-6">
+            <Avatar />
+            <p className="ml-4 text-4xl font-bold text-gray-900">
+              {userStore.user.name || 'Sir Meow'}
+            </p>
+          </div>
+          <p className="mb-6 text-md font-bold text-gray-900">
+            Other players ready:
           </p>
+          {players?.length ? (
+            <ul className="flex flex-col w-auto items-center">
+              {players.map((player, i) => (
+                <li
+                  key={player.id}
+                  className={classNames(
+                    'flex flex-row items-center w-fit',
+                    i < players.length - 1 ? 'mb-3' : '',
+                  )}
+                >
+                  <Avatar size="small" />
+                  <Link className="ml-2" to={`players/${player.id}`}>
+                    {player.name ? <>{player.name}</> : <i>No Name</i>}{' '}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>
+              <i>No players</i>
+            </p>
+          )}
         </div>
       </div>
     </div>
