@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { GiPokerHand } from 'react-icons/gi'
+import { useNavigate } from 'react-router-dom'
 import { useUserStore } from 'state'
 import * as z from 'zod'
 
@@ -17,6 +18,7 @@ const defaultValues = {
 type LoginFormValues = typeof defaultValues
 
 export default function LoginForm() {
+  const nav = useNavigate()
   const userStore = useUserStore()
 
   const {
@@ -31,20 +33,21 @@ export default function LoginForm() {
   console.log('errors', errors)
 
   const onSubmit = ({ name, rememberMe }: LoginFormValues) => {
-    console.log('name', name)
-    console.log('rememberMe', rememberMe)
+    // 'name is required'
     if (!name) {
-      // 'name is required'
       return
     }
 
-    return userStore.setName(name, rememberMe)
+    userStore.setName(name, rememberMe)
+
+    // TODO: Create game
+    return nav(`/game/${123}`)
   }
 
   console.log('userStore.user', userStore.user)
 
   return (
-    <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex min-h-full h-[70vh] items-center justify-center p-12">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <h2 className="text-base font-semibold uppercase tracking-wide text-blue-600">
@@ -65,7 +68,7 @@ export default function LoginForm() {
                 {...register('name')}
                 id="name"
                 required
-                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-violet-500 focus:outline-none focus:ring-violet-500 sm:text-sm"
+                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-violet-500 focus:outline-none focus:ring-violet-500 sm:text-sm"
                 placeholder="Name"
               />
             </div>
