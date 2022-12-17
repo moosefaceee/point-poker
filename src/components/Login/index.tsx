@@ -1,0 +1,108 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { GiPokerHand } from 'react-icons/gi'
+import { useUserStore } from 'state'
+import * as z from 'zod'
+
+const schema = z.object({
+  name: z.string().min(1, { message: 'Required' }),
+  rememberMe: z.boolean(),
+})
+
+const defaultValues = {
+  name: '',
+  rememberMe: false,
+}
+
+type LoginFormValues = typeof defaultValues
+
+export default function LoginForm() {
+  const userStore = useUserStore()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues,
+  })
+
+  console.log('errors', errors)
+
+  const onSubmit = ({ name, rememberMe }: LoginFormValues) => {
+    console.log('name', name)
+    console.log('rememberMe', rememberMe)
+    if (!name) {
+      // 'name is required'
+      return
+    }
+
+    return userStore.setName(name, rememberMe)
+  }
+
+  console.log('userStore.user', userStore.user)
+
+  return (
+    <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+          <h2 className="text-base font-semibold uppercase tracking-wide text-blue-600">
+            Welcome to
+          </h2>
+          <p className="my-3 text-4xl font-bold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+            Point Poker
+          </p>
+        </div>
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <input type="hidden" name="remember" defaultValue="true" />
+          <div className="-space-y-px rounded-md shadow-sm">
+            <div>
+              <label htmlFor="name" className="sr-only">
+                Name
+              </label>
+              <input
+                {...register('name')}
+                id="name"
+                required
+                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-violet-500 focus:outline-none focus:ring-violet-500 sm:text-sm"
+                placeholder="Name"
+              />
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                {...register('rememberMe')}
+                id="rememberMe"
+                name="rememberMe"
+                type="checkbox"
+                className="h-4 w-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+              />
+              <label
+                htmlFor="rememberMe"
+                className="ml-2 block text-sm text-gray-900"
+              >
+                Remember me
+              </label>
+            </div>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="group relative flex w-full justify-center rounded-md border border-transparent bg-violet-600 py-2 px-4 text-sm font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+            >
+              <span className="absolute inset-y-0 left-4 flex items-center pl-3">
+                <GiPokerHand
+                  className="h-5 w-5 text-violet-200 group-hover:text-violet-100"
+                  aria-hidden="true"
+                />
+              </span>
+              Join
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
