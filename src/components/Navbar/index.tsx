@@ -1,14 +1,14 @@
 import { Toggle } from 'components'
-import { Spade } from 'icons'
+import Cards from 'icons/Cards'
 import { Link, Outlet } from 'react-router-dom'
 
 export default function Navbar() {
   return (
     <>
-      <nav className="bg-gradient-to-r from-purple-100 to-purple-500 text-white dark:bg-gradient-to-r dark:from-stone-100 dark:to-stone-500">
+      <nav className="bg-purple-500 text-white dark:bg-stone-800">
         <div className="flex items-center justify-between px-12 py-4 w-full">
           <div className="flex items-center">
-            <Spade className="fill-purple-700 w-6 h-6" />
+            <Cards className="w-8 h-8 fill-gray-50 dark:fill-stone-200" />
           </div>
           <div className="flex items-center justify-between w-100%">
             <Link

@@ -9,5 +9,5 @@ module.exports = {
     require('@tailwindcss/container-queries'),
     require('@tailwindcss/forms'),
   ],
-  darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: 'class',
 }

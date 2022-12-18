@@ -1,5 +1,5 @@
-import { Navbar } from 'components'
-import { lazy } from 'react'
+import { Navbar, Spinner } from 'components'
+import { lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'tailwindcss/tailwind.css'
@@ -29,4 +29,8 @@ const router = createBrowserRouter([
   },
 ])
 
-root.render(<RouterProvider router={router} />)
+root.render(
+  <Suspense fallback={<Spinner />}>
+    <RouterProvider router={router} />
+  </Suspense>,
+)

@@ -15,15 +15,13 @@ export default function DarkModeSwitch() {
 
   const [isOn, setIsOn] = useState(() => {
     if (theme === 'light') {
-      return true
-    } else {
       return false
+    } else {
+      return true
     }
   })
 
   const toggleSwitch = () => setIsOn(!isOn)
-
-  console.log('isOn', isOn)
 
   if (isOn) {
     document.documentElement.classList.remove('dark')

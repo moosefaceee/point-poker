@@ -43,13 +43,15 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="flex min-h-full h-[65vh] items-center justify-center px-12">
+    <div className="flex min-h-full h-[65vh] items-center justify-center px-12 dark:bg-stone-800">
       <div className="w-full max-w-sm">
         <div className="text-center">
-          <h2 className="text-base font-semibold uppercase tracking-wide text-blue-600">
+          <h2 className="text-base font-semibold uppercase tracking-wide text-violet-900 dark:text-stone-100">
             Welcome to
           </h2>
-          <p className="my-3 text-2xl font-bold text-gray-900">Point Poker</p>
+          <p className="my-3 text-2xl font-bold text-gray-900 dark:text-violet-400">
+            Point Poker
+          </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <input type="hidden" name="remember" defaultValue="true" />
@@ -74,11 +76,11 @@ export default function LoginForm() {
                 id="rememberMe"
                 name="rememberMe"
                 type="checkbox"
-                className="h-4 w-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+                className="h-4 w-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500 dark:border-gray-400 dark:text-violet-500 dark:focus:ring-voilet-400"
               />
               <label
                 htmlFor="rememberMe"
-                className="ml-2 block text-sm text-gray-900"
+                className="ml-2 block text-sm text-gray-900 dark:text-gray-50"
               >
                 Remember me
               </label>
@@ -87,7 +89,7 @@ export default function LoginForm() {
           <div>
             <button
               type="submit"
-              className="group relative flex min-w-full justify-center rounded-md border border-transparent bg-violet-600 py-2 px-4 text-sm font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+              className="group relative flex min-w-full justify-center rounded-md border border-transparent bg-violet-600 dark:bg-violet-900 py-2 px-4 text-sm font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
             >
               <span className="absolute inset-y-0 left-4 flex items-center pl-3">
                 <Spade />
