@@ -23,17 +23,22 @@ function Card({ index }: { index: number }) {
     }
   }
 
+  const translation = () => {
+    return `hover:-translate-${index + 5}`
+  }
+
   return (
     <div
       key={index}
-      className={classNames('aspect-3/4 [grid-area:card_/deck]', bg())}
+      className={classNames('aspect-3/4 w-10 mr-2 rounded-md', bg())}
     />
   )
 }
 
 export default function CardStack() {
   return (
-    <div className="grid [grid:[card]_1fr_/_[deck]_min(50vmin,_40ch)] [--scaler:0]">
+    // <div className="grid [grid:[card]_1fr_/_[deck]_min(50vmin,_40ch)] [--scaler:0]">
+    <div className="flex">
       {Array.from({ length: 8 }).map((_, index) => (
         <Card key={index} index={index} />
       ))}
