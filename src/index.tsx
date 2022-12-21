@@ -1,36 +1,74 @@
+import {
+  createReactRouter,
+  createRouteConfig,
+  RouterProvider,
+} from '@tanstack/react-router'
 import { Navbar, Spinner } from 'components'
-import { lazy, Suspense } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { lazy, StrictMode, Suspense } from 'react'
+import ReactDOM from 'react-dom/client'
 import 'tailwindcss/tailwind.css'
 
 const Login = lazy(() => import('./routes/Login'))
-const ErrorPage = lazy(() => import('./routes/ErrorPage'))
+const About = lazy(() => import('./routes/About'))
 const Game = lazy(() => import('./routes/Game'))
 
-const container = document.getElementById('root') as HTMLDivElement
+const TanStackRouterDevtools =
+  process.env.NODE_ENV === 'production'
+    ? () => null // Render nothing in production
+    : lazy(() =>
+        // Lazy load in development
+        import('@tanstack/react-router-devtools').then((res) => ({
+          default: res.TanStackRouterDevtools,
+        })),
+      )
 
-const root = createRoot(container)
+const rootRoute = createRouteConfig({
+  component: () => <Navbar />,
+})
 
-const router = createBrowserRouter([
-  {
-    errorElement: <ErrorPage />,
-    element: <Navbar />,
-    children: [
-      {
-        path: '/',
-        element: <Login />,
-      },
-      {
-        path: '/game/:id',
-        element: <Game />,
-      },
-    ],
-  },
-])
+const indexRoute = rootRoute.createRoute({
+  path: '/',
+  component: Login,
+})
 
-root.render(
-  <Suspense fallback={<Spinner />}>
-    <RouterProvider router={router} />
-  </Suspense>,
-)
+const aboutRoute = rootRoute.createRoute({
+  path: '/about',
+  component: About,
+})
+
+const gameRoute = rootRoute.createRoute({
+  path: '/game',
+  component: Game,
+})
+
+const routeConfig = rootRoute.addChildren([indexRoute, aboutRoute, gameRoute])
+
+const router = createReactRouter({ routeConfig })
+
+declare module '@tanstack/react-router' {
+  interface RegisterRouter {
+    router: typeof router
+  }
+}
+
+function App() {
+  return (
+    <>
+      <RouterProvider router={router} />
+      {/* <TanStackRouterDevtools router={router} /> */}
+    </>
+  )
+}
+
+const rootElement = document.getElementById('root')!
+
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement)
+  root.render(
+    <StrictMode>
+      <Suspense fallback={<Spinner />}>
+        <App />
+      </Suspense>
+    </StrictMode>,
+  )
+}

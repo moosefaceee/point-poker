@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from '@tanstack/react-router'
 import { Spade } from 'icons'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { useUserStore } from 'state'
 import * as z from 'zod'
 
@@ -18,7 +18,7 @@ const defaultValues = {
 type LoginFormValues = typeof defaultValues
 
 export default function LoginForm() {
-  const nav = useNavigate()
+  const router = useRouter()
   const userStore = useUserStore()
 
   const {
@@ -38,8 +38,7 @@ export default function LoginForm() {
 
     userStore.setName(name, rememberMe)
 
-    // TODO: Create game
-    return nav(`/game/${123}`)
+    return router.navigate({ to: '/game' })
   }
 
   return (
@@ -66,6 +65,7 @@ export default function LoginForm() {
                 required
                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-violet-500 focus:outline-none focus:ring-violet-500 sm:text-sm"
                 placeholder="Name"
+                type="text"
               />
             </div>
           </div>
@@ -76,11 +76,11 @@ export default function LoginForm() {
                 id="rememberMe"
                 name="rememberMe"
                 type="checkbox"
-                className="h-4 w-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500 dark:border-gray-400 dark:text-violet-500 dark:focus:ring-voilet-400"
+                className="h-4 w-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500 dark:border-gray-400 focus:ring-offset-1 dark:bg-zinc-700 dark:text-violet-100 dark:focus:ring-voilet-400"
               />
               <label
                 htmlFor="rememberMe"
-                className="ml-2 block text-sm text-gray-900 dark:text-gray-50"
+                className="ml-2 block text-md text-gray-900 dark:text-gray-50"
               >
                 Remember me
               </label>
@@ -89,7 +89,7 @@ export default function LoginForm() {
           <div>
             <button
               type="submit"
-              className="group relative flex min-w-full justify-center rounded-md border border-transparent bg-violet-600 dark:bg-violet-900 py-2 px-4 text-sm font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+              className="group relative flex min-w-full justify-center rounded-md border border-transparent bg-violet-600 dark:bg-violet-900 py-2 px-4 text-sm font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500"
             >
               <span className="absolute inset-y-0 left-4 flex items-center pl-3">
                 <Spade />

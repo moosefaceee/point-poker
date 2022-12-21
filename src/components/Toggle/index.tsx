@@ -1,12 +1,5 @@
-import { motion } from 'framer-motion'
 import { Moon, Sun } from 'icons'
 import { useState } from 'react'
-
-const spring = {
-  type: 'spring',
-  stiffness: 700,
-  damping: 30,
-}
 
 type Themes = 'light' | 'dark'
 
@@ -21,14 +14,24 @@ export default function DarkModeSwitch() {
     }
   })
 
-  const toggleSwitch = () => setIsOn(!isOn)
+  const toggleSwitch = () => {
+    return setIsOn(!isOn)
+  }
+
+  const addClass = (key: string) => {
+    return document.documentElement.classList.add(key)
+  }
+
+  const removeClass = (key: string) => {
+    return document.documentElement.classList.remove(key)
+  }
 
   if (isOn) {
-    document.documentElement.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
-  } else {
-    document.documentElement.classList.add('dark')
+    addClass('dark')
     localStorage.setItem('theme', 'dark')
+  } else {
+    localStorage.setItem('theme', 'light')
+    removeClass('dark')
   }
 
   if (
@@ -36,9 +39,9 @@ export default function DarkModeSwitch() {
     (!('theme' in localStorage) &&
       window.matchMedia('(prefers-color-scheme: light)').matches)
   ) {
-    document.documentElement.classList.add('dark')
+    addClass('dark')
   } else {
-    document.documentElement.classList.remove('dark')
+    removeClass('dark')
   }
 
   return (
@@ -48,19 +51,15 @@ export default function DarkModeSwitch() {
         isOn && 'place-content-end'
       }`}
     >
-      <motion.div
-        className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-black/90"
-        layout
-        transition={spring}
-      >
-        <motion.div whileTap={{ rotate: 360 }}>
+      <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-black/90">
+        <div>
           {isOn ? (
             <Sun className="h-6 w-6 text-yellow-300" />
           ) : (
             <Moon className="h-6 w-6 text-slate-200" />
           )}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }
