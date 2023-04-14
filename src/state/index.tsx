@@ -1,5 +1,5 @@
-import { localStorageHelpers } from 'utils/localStorageHelpers'
 import create from 'zustand'
+import { devtools, persist } from 'zustand/middleware'
 
 type User = {
   name: string
@@ -7,32 +7,21 @@ type User = {
 
 type UserStoreType = {
   user: User
-  setName: (name: string, rememberMe: boolean) => void
+  setName: (name: string, rememberMe?: boolean) => void
   removeName: () => void
 }
 
 const usernameKey = 'name'
 
-const useUserStore = create<UserStoreType>((set) => ({
-  user: { name: '' },
-  setName: (name, rememberMe) =>
-    set(() => {
-      const localStorage = localStorageHelpers()
-
-      if (rememberMe) {
-        localStorage.setItem(usernameKey, name)
-      } else if (!rememberMe && !!localStorage.getItem(usernameKey)) {
-        localStorage.removeItem(usernameKey)
-      }
-
-      return { user: { name } }
-    }),
-  removeName: () =>
-    set(() => {
-      localStorage.removeItem(usernameKey)
-
-      return { user: { name: '' } }
-    }),
-}))
+const useUserStore = create<UserStoreType>()(
+  devtools(
+    persist((set) => ({
+      user: { name: '' },
+      setName: (name, rememberMe) => set(() => ({ user: { name } })),
+      removeName: () => set(() => ({ user: { name: '' } })),
+    })),
+    { name: usernameKey },
+  ),
+)
 
 export { useUserStore, type UserStoreType, type User }

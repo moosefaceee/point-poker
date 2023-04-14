@@ -2,10 +2,14 @@ import { Link, Outlet } from '@tanstack/react-router'
 import { Toggle } from 'components'
 import Cards from 'icons/Cards'
 
+type PaymentStatus = 'PENDING' | 'SUCCESS' | 'FAIL'
+
+const status: PaymentStatus = 'PENDING'
+
 export default function Navbar() {
   return (
     <>
-      <nav className="flex h-[10vh] bg-purple-700 text-white dark:bg-stone-800">
+      <nav className="flex h-[8vh] hover:scale-700 bg-purple-700 text-white dark:bg-stone-800">
         <div className="flex items-center justify-between px-12 py-auto w-full">
           <a
             href="/"

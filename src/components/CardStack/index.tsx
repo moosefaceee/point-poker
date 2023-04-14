@@ -23,10 +23,6 @@ function Card({ index }: { index: number }) {
     }
   }
 
-  const translation = () => {
-    return `hover:-translate-${index + 5}`
-  }
-
   return (
     <div
       key={index}
@@ -37,7 +33,6 @@ function Card({ index }: { index: number }) {
 
 export default function CardStack() {
   return (
-    // <div className="grid [grid:[card]_1fr_/_[deck]_min(50vmin,_40ch)] [--scaler:0]">
     <div className="flex">
       {Array.from({ length: 8 }).map((_, index) => (
         <Card key={index} index={index} />

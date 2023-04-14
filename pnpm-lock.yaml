@@ -33,6 +33,7 @@ specifiers:
   jest-environment-jsdom: ^29.3.1
   localforage: ^1.10.0
   match-sorter: ^6.3.1
+  pocketbase: ^0.9.0
   postcss: ^8.4.19
   prettier: 2.8.1
   react: ^18.2.0
@@ -53,6 +54,7 @@ dependencies:
   '@tanstack/react-router': 0.0.1-beta.36_biqbaboplfbrettd7655fr4n2y
   localforage: 1.10.0
   match-sorter: 6.3.1
+  pocketbase: 0.9.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.40.0_react@18.2.0
@@ -4929,6 +4931,10 @@ packages:
     dependencies:
       find-up: 4.1.0
     dev: true
+
+  /pocketbase/0.9.0:
+    resolution: {integrity: sha512-wLH8JNqtilgVgXMcO9kWcydryxemf8rZgTyn+DTHWtkwOe1ya6MuAOpVHtljIUxxtukZ82LSB2K7h12FZHwGMA==}
+    dev: false
 
   /postcss-import/14.1.0_postcss@8.4.19:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}

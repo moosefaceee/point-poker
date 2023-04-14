@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "pocketbase",
+		"path": "../../../Downloads/pocketbase"
+	},
+	{
+		"name": "point-poker",
+		"path": ".."
+	}
+],
+  "settings": {}
+}
