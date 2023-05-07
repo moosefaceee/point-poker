@@ -8,6 +8,9 @@ module.exports = {
         '2xs': '16rem',
         '3xs': '12rem',
       },
+      gridTemplateColumns: {
+        custom: '1fr min(65ch, 100%) 1fr',
+      },
       aspectRatio: {
         '3/4': '3 / 4',
       },

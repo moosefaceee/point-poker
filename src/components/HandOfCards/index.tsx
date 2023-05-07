@@ -44,13 +44,16 @@ const Card: React.FC<CardProps> = ({ suit, rank }) => {
   )
 }
 
-interface HandOfCardsProps {
+interface HandOfCardsProps extends React.HTMLAttributes<HTMLDivElement> {
   cards: CardProps[]
 }
 
-const HandOfCards = ({ cards }: HandOfCardsProps) => {
+const HandOfCards = ({ cards, ...props }: HandOfCardsProps) => {
   return (
-    <div className="flex justify-center items-center h-screen bg-green-200">
+    <div
+      className="flex justify-center items-center h-screen bg-green-200 w-full"
+      {...props}
+    >
       <div>
         {cards.map((card, index) => {
           const zIndex = `z-${index}`

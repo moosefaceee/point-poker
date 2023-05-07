@@ -1,8 +1,8 @@
 # Point Poker
 
-Team game to assist in figuring out story points. 
+Team game to assist in figuring out story points.
 
-## What is inside?
+## What's inside?
 
 This project uses many tools like:
 
