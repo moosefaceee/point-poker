@@ -1,5 +1,4 @@
-import { Spinner } from 'components'
-import HandOfCards from 'components/HandOfCards'
+import { HandOfCards, Spinner } from 'components'
 import { PageWrapper } from 'layouts'
 import { useState } from 'react'
 import { useUserStore } from 'state'
@@ -56,34 +55,28 @@ const Game = () => {
   const [loading, setIsLoading] = useState(false)
 
   return (
-    <>
-      <PageWrapper>
-        {/* <article className="p-4 space-y-2">
-        <StatisticGroup
-        loading={loading}
-        statistics={players}
-        title="Players"
-        />
-        <StatisticGroup
-        loading={loading}
-        statistics={roundResults}
-        title="Round Results"
-        />
-      </article> */}
-        {/* <FullBleed className=''>Full Bleed</FullBleed> */}
-        {/* <div className="bg-green-500 text-white p-4 col-span-1">Full bleed</div>
-        <div className="bg-purple-500 text-white p-4 col-span-1">
-          Full bleed
-        </div>
-        <div className="bg-orange-500 text-white p-4 col-span-1">
-          Full bleed
-        </div> */}
-        {/* <p className="col-span-3 w-full">Hey there, {data.user.name}</p> */}
-        <div></div>
-        <HandOfCards cards={cards} />
-        <div></div>
-      </PageWrapper>
-    </>
+    <PageWrapper>
+      <div>
+        <p className="col-span-3 w-full">
+          Hey there, <strong>{data.user.name}</strong>
+        </p>
+      </div>
+      <HandOfCards cards={cards} />
+      <div>
+        <article className="p-4 space-y-2">
+          <StatisticGroup
+            loading={loading}
+            statistics={players}
+            title="Players"
+          />
+          <StatisticGroup
+            loading={loading}
+            statistics={roundResults}
+            title="Round Results"
+          />
+        </article>
+      </div>
+    </PageWrapper>
   )
 }
 
